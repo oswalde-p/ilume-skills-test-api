@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
-const { IlumeError } = require('../errors');
+const { CustomError } = require('../errors');
 const User = require('../models/users');
 
 async function createUser(data) {
   const { userLevel, email, name } = data;
   // TODO use a library for proper validation
-  if (!userLevel || !email || !name) throw new IlumeError(400, 'Missing user data');
+  if (!userLevel || !email || !name) throw new CustomError(400, 'Missing user data');
   const user = await User.create({ user_level: userLevel, email, name });
   return user;
 }
 
 async function getUserDetails(userId) {
-  if (!mongoose.Types.ObjectId.isValid(userId)) throw new IlumeError(400, 'userId must be a valid ObjectId');
+  if (!mongoose.Types.ObjectId.isValid(userId)) throw new CustomError(400, 'userId must be a valid ObjectId');
   const user = await User.findById(userId);
-  if (!user) throw new IlumeError(404, 'User not found');
+  if (!user) throw new CustomError(404, 'User not found');
   return user;
 }
 

@@ -1,5 +1,5 @@
 const userService = require('../services/users');
-const { IlumeError } = require('../errors');
+const { CustomError } = require('../errors');
 
 async function createUser(req, res) {
   const { body } = req;
@@ -8,7 +8,7 @@ async function createUser(req, res) {
     return res.status(201).send(user);
   } catch (err) {
     // TODO use middleware for error handling
-    if (err instanceof IlumeError) {
+    if (err instanceof CustomError) {
       return res.status(err.httpStatus).send(err.message);
     }
     return res.status(500).send(err.message);
@@ -22,7 +22,7 @@ async function listUsers(req, res) {
     const user = await userService.listUsers(Number(page), term, Number(perpage));
     return res.status(200).send(user);
   } catch (err) {
-    if (err instanceof IlumeError) {
+    if (err instanceof CustomError) {
       return res.status(err.httpStatus).send(err.message);
     }
     return res.status(500).send(err.message);
@@ -34,7 +34,7 @@ async function userDetails(req, res) {
     const user = await userService.getUserDetails(userId);
     return res.status(200).send(user);
   } catch (err) {
-    if (err instanceof IlumeError) {
+    if (err instanceof CustomError) {
       return res.status(err.httpStatus).send(err.message);
     }
     console.error(err); // eslint-disable-line no-console

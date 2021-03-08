@@ -1,4 +1,4 @@
-class IlumeError extends Error {
+class CustomError extends Error {
   constructor(httpStatus, message) {
     super(message);
     this.httpStatus = httpStatus;
@@ -6,5 +6,5 @@ class IlumeError extends Error {
 }
 
 module.exports = {
-  IlumeError,
+  CustomError,
 };
