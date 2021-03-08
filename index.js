@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.get('/-/ping', (req, res) => res.sendStatus(200));
 
-app.use('/api', routes);
+app.use(routes);
 
 const port = process.env.PORT || 3000;
 
