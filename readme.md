@@ -12,7 +12,7 @@ By default, the server will listen on port 3000. This can be modified by providi
 
 ## API Endpoints
 
-### POST api/users
+### POST /users
 
 Creates a new user
 
@@ -33,10 +33,10 @@ The newly created user
 #### Eg
 
 ```sh
-    curl -X POST localhost:3000/api/users -H 'Content-type: application/json' -d '{"name": "jason", "email":"test@test.com", "userLevel": 1 }'
+    curl -X POST localhost:3000/users -H 'Content-type: application/json' -d '{"name": "jason", "email":"test@test.com", "userLevel": 1 }'
 ```
 
-### GET api/users
+### GET /users
 
 List all users. For paginated results, include `page` and `perpage` in the query string.
 
@@ -47,11 +47,11 @@ Array of user objects
 #### Eg
 
 ```sh
-    curl localhost:3000/api/users/
-    curl `localhost:3000/api/users?page=1&perpage=2`
+    curl localhost:3000/users/
+    curl `localhost:3000/users?page=1&perpage=2`
 ```
 
-### GET api/users/:userId
+### GET /users/:userId
 
 Get specific user details. userId must be a valid mongoose ObjectId
 
@@ -82,7 +82,7 @@ Get specific user details. userId must be a valid mongoose ObjectId
 #### Eg
 
 ```sh
-curl localhost:3000/api/users/604333588047aea19523a993
+curl localhost:3000/users/604333588047aea19523a993
 ```
 
 ## Deployement
